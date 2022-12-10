@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float jumpheight = 0.1f;
     public float gravityDivide = 100f;
+    public float jumpSpeed=100f;
 
     public void Awake()
     {
@@ -46,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         //Camera Controller
         transform.Rotate(0, Input.GetAxis("Mouse X") * Time.deltaTime * mouseSensivity,0);
 
-        xRotation -= Input.GetAxis("Mouse Y")*Time.deltaTime*mouseSensivity;
+        xRotation -= Input.GetAxis("Mouse Y") * Time.deltaTime;
         Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
         xRotation = Mathf.Clamp(xRotation, -90, 90f);
        
@@ -56,14 +57,16 @@ public class PlayerMovement : MonoBehaviour
         if(!isGround)
         {
             velocity.y += gravity * Time.deltaTime/gravityDivide;
+            speed = jumpSpeed;
         }
         else
         {
             velocity.y = -0.05f;
+            speed = 1;
         }
         if (Input.GetKeyDown(KeyCode.Space) && isGround)
         {
-            velocity.y = Mathf.Sqrt(jumpheight * -2f * gravity/gravityDivide) ;
+            velocity.y = Mathf.Sqrt(jumpheight * -1f * gravity/gravityDivide) ;
 
         }
 
