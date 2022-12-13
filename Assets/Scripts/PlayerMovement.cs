@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         //Camera Controller
         transform.Rotate(0, Input.GetAxis("Mouse X") * Time.deltaTime * mouseSensivity,0);
 
-        xRotation -= Input.GetAxis("Mouse Y") * Time.deltaTime;
+        xRotation -= Input.GetAxis("Mouse Y") * Time.deltaTime*mouseSensivity;
         Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
         xRotation = Mathf.Clamp(xRotation, -90, 90f);
        
